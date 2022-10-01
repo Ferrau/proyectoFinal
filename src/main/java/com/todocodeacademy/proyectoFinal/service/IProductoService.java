@@ -27,4 +27,11 @@ public interface IProductoService {
 	public void editProducto(Long codigo_producto, Long idNuevo, String nombreNuevo, String marcaNuevo, Double costoNuevo,
 			Double cantDispNuevo);
 	
+	//Obtener todos los productos cuya cantidad_disponible sea menor a 5
+	public List<Producto> cantDispon();
+
+
+
+	
+	
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,7 +23,7 @@ public class ProductoController {
 	IProductoService productServ;
 	
 	//CREAR
-	@GetMapping("/productos/crear")
+	@PostMapping("/productos/crear")
 	public String saveProducto(@RequestBody Producto product) {
 		productServ.saveProducto(product);
 		return "El producto fue creado correctamente";
@@ -51,7 +52,7 @@ public class ProductoController {
 	}
 	
 	//Edicion
-		@PutMapping("/productos/editar")
+	@PutMapping("/productos/editar")
 		public Producto editProducto(@RequestBody Producto product) {
 			
 			productServ.editProducto(product); //vamos al metodo de editar
@@ -74,6 +75,16 @@ public class ProductoController {
 		
 		return product;
 	}
+	
+	
+	
+	//4.Obtener todos los productos cuya cantidad_disponible sea menor a 5
+	@GetMapping ("/productos/falta_stock")
+	public List<Producto>cantDispon(){
+		return productServ.cantDispon();
+	}
+	
+	 
 	
 	
 	//RequestBody: nos trae todos los parametros dentro del body

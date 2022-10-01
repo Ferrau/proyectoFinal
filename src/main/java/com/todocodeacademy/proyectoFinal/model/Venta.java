@@ -7,38 +7,43 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name ="venta")
 public class Venta {
 
 	@Id
+	@Column (name="codigo_venta")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long codigo_venta;
+	@DateTimeFormat(style = "yyyy-MM-dd")
 	@Column (name="fecha_venta")
 	private LocalDate fecha_venta;
 	@Column (name="total")
 	private Double total;
 	
-/* ****  INICIO RELACION 1 A N: 1 vwnta ----- N productos ******* */
+/* ****  INICIO RELACION 1 A N: 1 venta ----- N productos ******* */
 	// - BASE DE DATOS: las relaciones de base de datos la FK va del lado de la N(del lado de mascotas) 
-	// - NIVEL LOGICO: La lista de mascota va del lado de la clase que tiene 1
+	// - NIVEL LOGICO: La lista de productos va del lado de la clase que tiene 1
 	
-	@OneToMany (mappedBy = "venta")
+	@OneToMany 
 	private List<Producto> listaProductos;
-/* ****  FIN RELACION 1 A N: 1 vwnta ----- N productos ******* */
+/* ****  FIN RELACION 1 A N: 1 venta ----- N productos ******* */
 	
 	
 	
 	/* ****  INICIO RELACION 1 A 1: 1 cliente ----- 1 venta ******* */	
 	@OneToOne 
+	@JoinColumn(name="un_cliente_id_cliente", referencedColumnName="id_cliente")
 	private Cliente unCliente;
-	
-
-	
+		
 	/* ****  FIN RELACION 1 A 1: 1 cliente ----- 1 venta ******* */
 	
 	

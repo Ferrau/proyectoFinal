@@ -13,7 +13,6 @@ public class Cliente {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	@Column (name="id_cliente")
 	private Long id_cliente;
 	@Column (name="nombre")
 	private String nombre;
@@ -34,6 +33,14 @@ public class Cliente {
 		this.apellido = apellido;
 		this.dni = dni;
 	}
+	
+	
+
+	public Cliente() {
+		super();
+	}
+
+
 
 	/*********** FIN: CONSTRUCTOR ************ */
 	

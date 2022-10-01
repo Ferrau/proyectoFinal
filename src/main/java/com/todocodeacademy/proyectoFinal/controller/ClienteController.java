@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import com.todocodeacademy.proyectoFinal.model.Cliente;
 import com.todocodeacademy.proyectoFinal.service.IClienteService;
 
@@ -53,23 +54,27 @@ public class ClienteController {
 	//Edicion de cliente
 	@PutMapping("/clientes/editar/{id_cliente}")
 	public Cliente editCliente(@PathVariable Long id_cliente,
+	
 			@RequestParam (required = false, name = "id_cliente") Long idNuevo,
 			@RequestParam (required = false, name = "nombre") String nombreNuevo,
 			@RequestParam (required = false, name = "apellido") String apellidoNuevo,
-			@RequestParam (required = false, name = "dni") int dniNuevo) {
+			@RequestParam (required = false, name = "dni") String dniNuevo) {
 		
-		//vamos al metodo de editar 
-		clientServ.editCliente(id_cliente, idNuevo, nombreNuevo, apellidoNuevo, apellidoNuevo);
+	
+			//vamos al metodo de editar 
+			clientServ.editCliente(id_cliente, idNuevo, nombreNuevo, apellidoNuevo, dniNuevo);
+			//Buscamos por id
+		   Cliente cliente=  clientServ.findcliente(idNuevo);
+			
+			 //devolvemos el nuevo objeto
+			return cliente ;
 		
-		//Buscamos por id
-		Cliente cli = clientServ.findcliente(id_cliente);
-		
-		return cli; //devolvemos el nuevo objeto
 	
 	}
 	
-	//Edicion de cliente con id
 	
+	//Edicion de cliente con id
+	@PutMapping("/clientes/editar") //Se modifica el endpoint de editar
 	public Cliente editCliente(@RequestBody Cliente cli) {
 		//vamos al metodo de editar 
 		clientServ.editCliente(cli);
@@ -79,5 +84,30 @@ public class ClienteController {
 		
 	}
 	
+	
+	
+//	@PutMapping("/clientes/editar/{id}")
+//	public ResponseEntity<Cliente> editCliente(@RequestBody Cliente cli, @PathVariable Long id_cliente){
+//			
+//			try {
+//				
+//				Cliente cliexis= clientServ.findcliente(id_cliente);
+//				
+//				/*Actualizamos el producto en nuestra base de datos*/
+//				cliexis.setNombre(producto.getNombre());
+//				cliexis.setPrecio(producto.getPrecio());
+//				
+//				servicio.guardarProductos(productoExistente);	
+//				return new ResponseEntity<Producto>(HttpStatus.OK);
+//				
+//				/*ResponseEntity: clase que que tiene un cuerpo(objeto), estado(OK/NOT_FOUNF) */
+//				
+//			}catch (Exception excepcion){
+//				/*Si sucede algu error, le saldra en pantalla al usuario que no se ha encontrado el dato buscado*/
+//				return new ResponseEntity<Producto>(HttpStatus.NOT_FOUND);
+//			}
+//		
+//		}
+//	
 	
 }

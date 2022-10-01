@@ -1,5 +1,6 @@
 package com.todocodeacademy.proyectoFinal.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,10 +61,31 @@ public class ProductoService implements IProductoService{
 				product.setCosto(costoNuevo);
 				product.setCantidad_disponible(cantDispNuevo);
 				
+				
 				//llama al repositorio para guardar los nuevo cambios en la base de datos
 				this.saveProducto(product);
 				
 		
 	}
+	
+	//4. Obtener todos los productos cuya cantidad_disponible sea menor a 5
+	@Override
+	public List<Producto> cantDispon(){
+		List<Producto> listProd = productRepo.findAll();
+		List<Producto> listaDispo = new ArrayList<>();
+		
+		for (int i=0; i> listProd.size(); i++) {
+			if (listProd.get(i).getCantidad_disponible()<5) {
+				listaDispo.add(listProd.get(i));
+			}
+		}
+		
+		return listaDispo;
+	}
+	
+	
+	
+
+	   
 
 }
