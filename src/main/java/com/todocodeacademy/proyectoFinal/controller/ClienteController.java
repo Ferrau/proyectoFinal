@@ -86,28 +86,6 @@ public class ClienteController {
 	
 	
 	
-//	@PutMapping("/clientes/editar/{id}")
-//	public ResponseEntity<Cliente> editCliente(@RequestBody Cliente cli, @PathVariable Long id_cliente){
-//			
-//			try {
-//				
-//				Cliente cliexis= clientServ.findcliente(id_cliente);
-//				
-//				/*Actualizamos el producto en nuestra base de datos*/
-//				cliexis.setNombre(producto.getNombre());
-//				cliexis.setPrecio(producto.getPrecio());
-//				
-//				servicio.guardarProductos(productoExistente);	
-//				return new ResponseEntity<Producto>(HttpStatus.OK);
-//				
-//				/*ResponseEntity: clase que que tiene un cuerpo(objeto), estado(OK/NOT_FOUNF) */
-//				
-//			}catch (Exception excepcion){
-//				/*Si sucede algu error, le saldra en pantalla al usuario que no se ha encontrado el dato buscado*/
-//				return new ResponseEntity<Producto>(HttpStatus.NOT_FOUND);
-//			}
-//		
-//		}
-//	
+
 	
 }
